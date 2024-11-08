@@ -48,18 +48,11 @@ const LogInForm = () => {
             validationSchema={logInValidationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               logInAPI(values.email, values.password).then((response) => {
-                // alert(response.message);
                 if (response.success) {
-                  // resetForm();
-                  console.log(response.message);
-                  localStorage.setItem('authToken', response.token);                   
+                  localStorage.setItem('authToken', response.token);
                   navigate('/');
-                }
-                else{
-                  console.log(response.message);
-                  // showAlert(response.message, 'error');
-                  // toast.error(response.error,)
-                  setSubmitting(false);
+                } else {
+                  toast.error(response.message);
                 }
                 setSubmitting(false);
               });
